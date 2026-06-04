@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Jurusan;
+use Illuminate\Http\Request;
+
+class JurusanController extends Controller
+{
+    public function index()
+    {
+        $jurusans = Jurusan::all();
+
+        return view('jurusan.index', compact('jurusans'));
+    }
+
+    public function create()
+    {
+        return view('jurusan.create');
+    }
+
+    public function store(Request $request)
+    {
+        Jurusan::create([
+            'nama_jurusan' => $request->nama_jurusan
+        ]);
+
+        return redirect('/jurusan');
+    }
+
+    public function edit($id)
+    {
+        $jurusan = Jurusan::findOrFail($id);
+
+        return view('jurusan.edit', compact('jurusan'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $jurusan = Jurusan::findOrFail($id);
+
+        $jurusan->update([
+            'nama_jurusan' => $request->nama_jurusan
+        ]);
+
+        return redirect('/jurusan');
+    }
+
+    public function destroy($id)
+    {
+        $jurusan = Jurusan::findOrFail($id);
+
+        $jurusan->delete();
+
+        return redirect('/jurusan');
+    }
+}
