@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Edit Mahasiswa</h1>
-    <form action="/mahasiswa/{{ $mahasiswa->id }}" method="POST">
+    <form action="{{ route('mahasiswa.update', $mahasiswa->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div>

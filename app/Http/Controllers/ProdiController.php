@@ -28,7 +28,7 @@ class ProdiController extends Controller
             'nama_prodi' => $request->nama_prodi,
         ]);
 
-        return redirect('/prodi');
+       return redirect()->route('prodi.index');
     }
 
     public function edit($id)
@@ -49,7 +49,7 @@ class ProdiController extends Controller
             'nama_prodi' => $request->nama_prodi,
         ]);
 
-        return redirect('/prodi');
+        return redirect()->route('prodi.index');
     }
     public function destroy($id)
     {

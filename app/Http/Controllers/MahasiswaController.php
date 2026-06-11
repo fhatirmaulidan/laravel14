@@ -8,9 +8,10 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
+        $title = 'Mahasiswa';
         $mahasiswas = Mahasiswa::with('prodi')->get();
 
-        return view('mahasiswa.index', compact('mahasiswas'));
+        return view('mahasiswa.index', compact('mahasiswas','title'));
     }
     
     public function create()
@@ -29,18 +30,20 @@ class MahasiswaController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect('/mahasiswa');
+        return redirect()->route('mahasiswa.index');
     }
 
     public function edit($id)
     {
+        $title = 'Mahasiswa';
         $mahasiswa = Mahasiswa::findOrFail($id);
 
         $prodis = Prodi::all();
 
         return view('mahasiswa.edit', compact(
             'mahasiswa',
-            'prodis'
+            'prodis',
+            'title'
         ));
     }
 
@@ -55,7 +58,7 @@ class MahasiswaController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect('/mahasiswa');
+        return redirect()->route('mahasiswa.index');
     }
 
     public function destroy($id)
