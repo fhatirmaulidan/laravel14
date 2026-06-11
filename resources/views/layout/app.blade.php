@@ -64,10 +64,11 @@
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Master</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="jurusan.html">Jurusan</a>
-                        <a class="collapse-item" href="prodi.html">Prodi</a>
+                        <a class="collapse-item" href="{{ 'jurusan' }}">Jurusan</a>
+                        <a class="collapse-item" href="{{ 'prodi' }}">Prodi</a>
+
                        
                     </div>
                    

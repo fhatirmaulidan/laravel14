@@ -7,7 +7,7 @@
 
     <h1>Edit Jurusan</h1>
 
-    <form action="/jurusan/{{ $jurusan->id }}"
+    <form action="{{ route('jurusan.update', $prodi->id) }}"
           method="POST">
 
         @csrf

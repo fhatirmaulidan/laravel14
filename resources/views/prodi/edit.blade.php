@@ -1,50 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Prodi</title>
-</head>
-<body>
-    <h1>Edit Prodi</h1>
-    <form action="/prodi/{{ $prodi->id }}"
-          method="POST">
-        @csrf
-        @method('PUT')
-        <div>
-            <label>Jurusan</label>
+@extends('layout.app')
+@section('content')
+    <div class="container-fluid">
 
-            <select name="jurusan_id">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Ubah Prodi</h1>
 
-                @foreach($jurusans as $jurusan)
+        <!-- Card -->
+        <div class="card shadow mb-4">
 
-                <option value="{{ $jurusan->id }}"
-                    {{ $prodi->jurusan_id == $jurusan->id ? 'selected' : '' }}>
-                    {{ $jurusan->nama_jurusan }}
-                </option>
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Form Ubah Prodi
+                </h6>
+            </div>
 
-                @endforeach
+            <div class="card-body">
 
-            </select>
+                <form action="{{ route('prodi.update', $prodi->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
+                    <div class="form-group">
+                        <label>Jurusan</label>
+
+                        <select name="jurusan_id" class="form-control">
+                            @foreach ($jurusans as $jurusan)
+                                <option value="{{ $jurusan->id }}"
+                                    {{ $prodi->jurusan_id == $jurusan->id ? 'selected' : '' }}>
+                                    {{ $jurusan->nama_jurusan }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Prodi</label>
+
+                        <input type="text" name="nama_prodi" class="form-control"
+                            value="{{ old('nama_prodi', $prodi->nama_prodi) }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Update
+                    </button>
+
+                    <a href="{{ route('prodi.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
+                </form>
+
+
+            </div>
         </div>
 
-        <br>
-
-        <div>
-
-            <label>Nama Prodi</label>
-
-            <input type="text"
-                   name="nama_prodi"
-                   value="{{ $prodi->nama_prodi }}">
-
-        </div>
-        <br>
-
-        <button type="submit">
-            Update
-        </button>
-
-    </form>
-
-</body>
-</html>
+    </div>
+@endsection

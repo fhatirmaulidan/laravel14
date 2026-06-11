@@ -1,8 +1,8 @@
+
 @extends('layout.app')
 @section('content')
 <div class="container-fluid">
 
-    
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Data Jurusan</h1>
     <p class="mb-4">
@@ -17,7 +17,7 @@
                 Data Jurusan
             </h6>
 
-            <a href="tambah_jurusan.html" class="btn btn-primary btn-sm">
+            <a href="{{ route('jurusan.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Tambah Jurusan
             </a>
@@ -38,34 +38,33 @@
 
                     <tbody>
 
-                        <tr>
-                            <td>1</td>
-                            <td>Informatika dan Bisnis</td>
-                            <td>
-                                <a href="ubah_jurusan.html" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Update
-                                </a>
+                           @foreach($jurusans as $item)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->nama_jurusan }}</td>
+            <td>
 
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </button>
-                            </td>
-                        </tr>
+                <a href="{{ route('jurusan.edit', $item->id) }}""   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
 
-                        <tr>
-                            <td>2</td>
-                            <td>Rekayasa Mesin dan Manufaktur</td>
-                            <td>
-                                <a href="ubah_jurusan.html" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Update
-                                </a>
+                <form action="{{ route('jurusan.destroy', $item->id) }}"
+                      method="POST" style="display:inline;">
 
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </button>
-                            </td>
-                        </tr>
+                    @csrf
+                    @method('DELETE')
 
+                    <button type="submit" class="btn btn-danger btn-sm"> 
+                        Hapus
+                    </button>
+
+                </form>
+
+            </td>
+        </tr>
+        @endforeach
+
+                       
                     </tbody>
 
                 </table>
@@ -76,52 +75,4 @@
     </div>
 
 </div>
-
 @endsection
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Jurusan</title>
-</head>
-<body>
-
-    <h1>Data Jurusan</h1>
-    <a href="/jurusan/create">Tambah Jurusan</a>
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>No</th>
-            <th>Nama Jurusan</th>
-            <th>Aksi</th>
-        </tr>
-
-        @foreach($jurusans as $item)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $item->nama_jurusan }}</td>
-            <td>
-
-                <a href="/jurusan/{{ $item->id }}/edit">
-                    Edit
-                </a>
-
-                <form action="/jurusan/{{ $item->id }}"
-                      method="POST">
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit">
-                        Hapus
-                    </button>
-
-                </form>
-
-            </td>
-        </tr>
-        @endforeach
-
-    </table>
-
-</body>
-</html>

@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Tambah Mahasiswa</h1>
-    <form action="/mahasiswa" method="POST">
+    <form action="{{ route('mahasiswa.index) }}" method="POST">
         @csrf
         <div>
             <label>Prodi</label>

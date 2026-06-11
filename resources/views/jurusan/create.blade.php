@@ -7,7 +7,7 @@
 
     <h1>Tambah Jurusan</h1>
 
-    <form action="/jurusan" method="POST">
+    <form action="{{ route('jurusan.index') }}" method="POST">
 
         @csrf
 
