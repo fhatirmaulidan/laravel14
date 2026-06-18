@@ -8,7 +8,7 @@ use App\Http\Controllers\ProdiController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [AuthController::class, 'loginForm']);
+Route::get('/login', [AuthController::class, 'loginForm']);
 Route::post('/login', [AuthController::class, 'login']);
 
 /*

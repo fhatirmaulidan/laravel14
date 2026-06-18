@@ -1,75 +1,49 @@
-@extends('layout.app')
-@section('content')
-<div class="container-fluid">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Mahasiswa</title>
+</head>
+<body>
+    <h1>Tambah Mahasiswa</h1>
+    <form action="{{ route('mahasiswa.index') }}" method="POST">
+        @csrf
+        <div>
+            <label>Prodi</label>
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tambah Mahasiswa</h1>
-    <p class="mb-4">
-        Form untuk menambahkan data mahasiswa baru ke dalam sistem akademik.
-    </p>
+            <select name="prodi_id">
+                @foreach($prodis as $prodi)
 
-    <!-- Card Form -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Form Tambah Mahasiswa
-            </h6>
+                <option value="{{ $prodi->id }}">
+                    {{ $prodi->nama_prodi }}
+                </option>
+                @endforeach
+
+            </select>
         </div>
-        <div class="card-body">
-            <form action="{{ route('mahasiswa.index') }}" method="POST">
-                @csrf
-                
-                <div class="form-group">
-                    <label for="prodi_id" class="font-weight-bold">Prodi</label>
-                    <select name="prodi_id" id="prodi_id" class="form-control" required>
-                        <option value="" disabled selected>Pilih Program Studi</option>
-                        @foreach($prodis as $prodi)
-                            <option value="{{ $prodi->id }}">
-                                {{ $prodi->nama_prodi }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="nim" class="font-weight-bold">NIM</label>
-                    <input type="text" 
-                           id="nim"
-                           name="nim" 
-                           class="form-control" 
-                           placeholder="Masukkan NIM" 
-                           required>
-                </div>
-
-                <div class="form-group">
-                    <label for="nama" class="font-weight-bold">Nama</label>
-                    <input type="text" 
-                           id="nama"
-                           name="nama" 
-                           class="form-control" 
-                           placeholder="Masukkan nama mahasiswa" 
-                           required>
-                </div>
-
-                <div class="form-group">
-                    <label for="alamat" class="font-weight-bold">Alamat</label>
-                    <textarea id="alamat" 
-                              name="alamat" 
-                              class="form-control" 
-                              rows="5" 
-                              placeholder="Masukkan alamat" 
-                              required></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary shadow-sm">
-                    <i class="fas fa-save"></i> Simpan
-                </button>
-                <a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary shadow-sm">
-                    <i class="fas fa-arrow-left"></i> Kembali
-                </a>
-            </form>
+        <br>
+        <div>
+            <label>NIM</label>
+            <input type="text" name="nim">
         </div>
-    </div>
+        <br>
+        <div>
+            <label>Nama</label>
 
-</div>
-@endsection
+            <input type="text" name="nama">
+        </div>
+
+        <br>
+
+        <div>
+            <label>Alamat</label>
+
+            <textarea name="alamat" cols="20" rows="5"></textarea>
+        </div>
+        <br>
+        <button type="submit">
+            Simpan
+        </button>
+    </form>
+</body>
+</html>

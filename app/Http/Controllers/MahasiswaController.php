@@ -30,7 +30,7 @@ class MahasiswaController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect()->route('mahasiswa.index');
+        return redirect('/mahasiswa');
     }
 
     public function edit($id)
@@ -58,7 +58,7 @@ class MahasiswaController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect()->route('mahasiswa.index');
+        return redirect('/mahasiswa');
     }
 
     public function destroy($id)

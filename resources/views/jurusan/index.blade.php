@@ -1,3 +1,4 @@
+
 @extends('layout.app')
 @section('content')
 <div class="container-fluid">
@@ -16,7 +17,7 @@
                 Data Jurusan
             </h6>
 
-            <a href="{{ route('jurusan.create') }}" class="btn btn-warning btn-sm">
+            <a href="{{ route('jurusan.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Tambah Jurusan
             </a>
@@ -36,25 +37,34 @@
                     </thead>
 
                     <tbody>
-                        @foreach($jurusans as $item)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->nama_jurusan }}</td>
-                            <td>
-                                <a href="{{ route('jurusan.edit', $item->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
 
-                                <form action="{{ route('jurusan.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i> Hapus
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
+                           @foreach($jurusans as $item)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->nama_jurusan }}</td>
+            <td>
+
+                <a href="{{ route('jurusan.edit', $item->id) }}""   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <form action="{{ route('jurusan.destroy', $item->id) }}"
+                      method="POST" style="display:inline;">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger btn-sm"> 
+                        Hapus
+                    </button>
+
+                </form>
+
+            </td>
+        </tr>
+        @endforeach
+
+                       
                     </tbody>
 
                 </table>

@@ -9,9 +9,11 @@ class ProdiController extends Controller
 {
     public function index()
     {
-        $prodis = Prodi::with('jurusan')->get();
+     
+     $title ='Prodi';
+     $prodis = Prodi::with('jurusan')->get();
 
-        return view('prodi.index', compact('prodis'));
+        return view('prodi.index', compact('prodis','title'));
     }
 
     public function create()
@@ -28,16 +30,18 @@ class ProdiController extends Controller
             'nama_prodi' => $request->nama_prodi,
         ]);
 
-       return redirect()->route('prodi.index');
+        return redirect()->route('prodi.index');
     }
 
     public function edit($id)
     {
+        $title ='Edit Prodi';
         $prodi = Prodi::findOrFail($id);
         $jurusans = Jurusan::all();
         return view('prodi.edit', compact(
             'prodi',
-            'jurusans'
+            'jurusans',
+            'title'
         ));
     }
     public function update(Request $request, $id)
@@ -49,13 +53,13 @@ class ProdiController extends Controller
             'nama_prodi' => $request->nama_prodi,
         ]);
 
-        return redirect()->route('prodi.index');
+       return redirect()->route('prodi.index');
     }
     public function destroy($id)
     {
         $prodi = Prodi::findOrFail($id);
         $prodi->delete();
 
-        return redirect('/prodi');
+        return redirect()->route('prodi.index');
     }
 }
